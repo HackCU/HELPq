@@ -19,13 +19,21 @@ Template.userEdit.helpers({
         skill: skill
       }
     });
+  },
+  isCurrentUser: function () {
+      return Template.instance().data._id === Meteor.userId();
   }
+
 });
 
 Template.userEdit.events({
   'click .delete.skill': function(e, t){
     removeSkill(e, t);
   },
+  'click #mentor-me': function (e, t) {
+      mentorme()
+  },
+
   "keyup input[name='skills']": function(e, t){
     if (e.keyCode === 13){
       addSkill(e, t)

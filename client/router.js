@@ -11,6 +11,12 @@ Router.route('/', function(){
   this.render('home');
 });
 
+Router.route('/join/mentors', function(){
+    mentorme()
+    this.redirect('/')
+});
+
+
 Router.route('/profile', function(){
   this.layout('bannerLayout');
   this.render('profile');
