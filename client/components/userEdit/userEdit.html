@@ -34,25 +34,28 @@
       <div class="field">
         <div class="ui fluid green save button">Save Profile</div>
       </div>
-       {{#unless profile.mentor }}
+    {{#if isCurrentUser }}
+        {{#unless profile.mentor }}
           <div class="field">
-              <div id="mentor-me" class="ui fluid blue button">Become a mentor!</div>
+              <div id="mentor-me" class="ui fluid blue button">I want to help, make me a mentor!</div>
           </div>
-       {{/unless}}
-       {{#if profile.mentor }}
+        {{/unless}}
+        {{#if profile.mentor }}
            <p>You are a mentor! Thanks!</p>
-      {{/if}}
-      {{#if success }}
-        <div class="ui positive message">
-          <div class="header">Saved Successfully!</div>
-        </div>
-      {{/if}}
+        {{/if}}
 
-      {{#if error }}
-        <div class="ui negative message">
-          <div class="header">Uh oh, something went wrong!</div>
+    {{/if}}
+    {{#if success }}
+        <div class="ui positive message">
+            <div class="header">Saved Successfully!</div>
         </div>
-      {{/if}}
+    {{/if}}
+
+    {{#if error }}
+        <div class="ui negative message">
+            <div class="header">Uh oh, something went wrong!</div>
+        </div>
+    {{/if}}
 
     </div>
   </div>

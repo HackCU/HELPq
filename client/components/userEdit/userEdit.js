@@ -19,7 +19,11 @@ Template.userEdit.helpers({
         skill: skill
       }
     });
+  },
+  isCurrentUser: function () {
+      return Template.instance().data._id === Meteor.userId();
   }
+
 });
 
 Template.userEdit.events({
@@ -27,23 +31,7 @@ Template.userEdit.events({
     removeSkill(e, t);
   },
   'click #mentor-me': function (e, t) {
-      var profile = {
-        'mentor': 'true'
-      };
-
-      Meteor.call("updateUser", t.data._id, profile, function(err){
-          if (err){
-              t.error.set(err);
-              setTimeout(function(){
-                  t.error.set(false);
-              }, 5000)
-          } else {
-              t.success.set(true);
-              setTimeout(function(){
-                  t.success.set(false);
-              }, 5000);
-          }
-      });
+      mentorme()
   },
 
   "keyup input[name='skills']": function(e, t){
