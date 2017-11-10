@@ -11,6 +11,7 @@ Meteor.methods({
   reopenTicket: reopenTicket,
   rateTicket: rateTicket,
   expireTicket: expireTicket,
+  makeMeMentor: makeMeMentor,
 
   createAnnouncement: createAnnouncement,
   deleteAnnouncement: deleteAnnouncement,
@@ -243,6 +244,21 @@ function toggleRole(role, id){
     });
     return true;
   }
+}
+
+function makeMeMentor(){
+    // can only toggle available roles
+    var role = "mentor";
+    var user = _getUser(this.userId);
+    var setRole = {};
+    setRole['profile.mentor'] = true;
+
+    Meteor.users.update({
+      _id: this.userId
+    },{
+      $set: setRole
+    });
+    return true;
 }
 
 // Admin or user

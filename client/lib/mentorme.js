@@ -1,11 +1,9 @@
 window.mentorme = function () {
-    var profile = {
-        'mentor': 'true'
-    };
 
-    Meteor.call("updateUser", Meteor.userId(), profile, function(err){
+    Meteor.call("makeMeMentor", function(err){
         if (err){
-            console.error(err)
+            debugger;
+            console.error(err);
         } else {
             console.info('Successfully converted to mentor!')
         }
