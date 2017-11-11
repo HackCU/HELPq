@@ -40,62 +40,24 @@ meteor
 
 ## Deploy
 
-To deploy we will use `meteor up`. To do so first install it by running: `npm install -g mup`. You will also need sudo access to the server, ask to website team organizer.
+To deploy we use [ulexus/meteor](https://hub.docker.com/r/ulexus/meteor/) docker image. You will need to have access to the server. To deploy a new version follow the instructions below:
 
+1. `meteor build ../mentors_out/`
+2. `cd ../mentors_out/`
+3. `scp mentors.tar.gz user@hackupc.com:mentors/`
+4. SSH into server as user and execute: `mentors/start_docker.sh`
 
-- Create a new folder outside the project
-- Add your ssh keys to ssh-agent. Ex: `ssh-add ~/.ssh/id_rsa`
-- Run `mup init`
-- Edit the generated `mup.js` file to match the following:
+### `start_docker.sh`
 
-```js
-module.exports = {
-  servers: {
-    one: {
-        // TODO: change host and username
-      host: 'REPLACE_WITH_SERVER_IP',
-      username: 'REPLACE_WITH_USER',
-    }
-  },
-
-  meteor: {
-    name: 'helpq',
-    // TODO: change path
-    path: 'path/to/helpq/project/',
-
-    servers: {
-      one: {},
-    },
-
-    env: {
-      ROOT_URL: 'http://mentors.hackcu.org/',
-      PORT: 8000,
-      MONGO_URL: 'mongodb://localhost/meteor',
-      APP_EN: 'production',
-    },
-
-    docker: {
-      image: 'kadirahq/meteord',
-    },
-    deployCheckWaitTime: 120,
-    enableUploadProgressBar: true
-  },
-
-  mongo: {
-    port: 27017,
-    version: '3.4.1',
-    servers: {
-     one: {}
-    }
-  }
-};
+```sh
+#!/bin/sh
+echo "Killing previous container..."
+docker kill $(docker ps -a | grep "ulexus/meteor" | cut -f1 -d" ")
+echo "Removing exited containers..."
+docker rm -v $(docker ps -a -q -f status=exited)
+echo "Starting server..."
+docker run -d -p 8007:8007 -e PORT="8007" -e ROOT_URL=https://mentors.hackupc.com   -e BUNDLE_FILE=/home/meteor/build.tar.gz   -v /home/user/mentors/mentors.tar.gz:/home/meteor/build.tar.gz   -e MONGO_URL=mongodb://your_mongo_url/mentors-hackupc  ulexus/meteor
 ```
-
-
-- Run `mup setup` (only needed if first time deploying to server)
-- Run `mup deploy`
-
-If you need to deploy a new version, run `mup deploy` only.
 
 ----------------
 
