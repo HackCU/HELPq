@@ -8,10 +8,10 @@
 //------------------------------
 
 // Primary color of your brand (Used for primary buttons, glows, etc.)
-$brand-primary: #063651;
+$brand-primary: #1a8a58;
 
 // Secondary color of your brand (used for secondary buttons)
-$brand-secondary: #220B0D;
+$brand-secondary: #22292c;
 
 // Success Buttons
 $brand-success: rgb(46, 204, 113);
@@ -20,7 +20,7 @@ $brand-success: rgb(46, 204, 113);
 $brand-danger: #ff240b;
 
 // Black
-$black: #2d2d2d;
+$black: #22292c;
 
 // --------------
 // Colors used for social auth
@@ -77,7 +77,7 @@ $github-gray: #24292e;
   color: white;
 
   // Basic white text on brand color:
-  // background: $brand-primary;
+  // background: $brand-secondary;
 
   // Single background image covering the entire page
   // background: url(/assets/images/background.jpg) no-repeat center center;
@@ -99,7 +99,7 @@ $github-gray: #24292e;
   // background-size: cover;
 
   // Basic white on brand color:
-   background: $brand-primary;
+   background: $brand-secondary;
 
   // Repeated Background:
   //background: url(/assets/images/geometry2.png) repeat;
