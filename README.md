@@ -1,6 +1,6 @@
 <br>
 <p align="center">
-  <img alt="HackCU" src="https://github.com/hackcu/mentors/raw/master/public/assets/images/hackculogo.png" width="200"/>
+  <img alt="HackCU IV" src="https://github.com/HackCU/splash-page/blob/master/img/hackcu_black.png" width="200"/>
 </p>
 <br>
 
